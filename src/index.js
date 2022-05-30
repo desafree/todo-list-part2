@@ -1,6 +1,7 @@
 import { format, formatDistance, formatRelative, subDays } from "date-fns";
 import TodoConstructor from "./modules/TodoConstructor.js";
 import { todoArray } from "./modules/todoArray.js";
+import { displayCommand } from "./modules/display.js";
 import "./style.scss";
 
 const localStorageUpdatedArray = [
@@ -48,5 +49,9 @@ function updateLocalStorage(newTodo) {
   );
 }
 
-console.log(todoArray.getAllTodo());
-console.log(todoArray.getProjectsName());
+// console.log(todoArray.getAllTodo());
+// console.log(todoArray.getProjectsName());
+
+displayCommand.displayTodos(todoArray.getAllTodo());
+displayCommand.createProjectsList(todoArray.getProjectsName());
+// displayCommand.displayTodos(todoArray.getProjectTodo("none"));

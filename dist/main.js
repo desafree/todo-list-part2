@@ -3522,6 +3522,122 @@ class TodoConstructor {
 
 /***/ }),
 
+/***/ "./src/modules/display.js":
+/*!********************************!*\
+  !*** ./src/modules/display.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "displayCommand": () => (/* binding */ displayCommand)
+/* harmony export */ });
+
+
+// TODO add functionality:change priority, change note + add note, add functionality on project click
+
+const displayCommand = (function displayCommand() {
+  return { displayTodos, createProjectsList };
+
+  function displayTodos(todosArray) {
+    removeTodos();
+    todosArray.forEach(createAndAppendTodo);
+  }
+
+  function removeTodos() {
+    const todosContainer = document.querySelector(".todos-container");
+    todosContainer.textContent = "";
+  }
+
+  function createAndAppendTodo(todo) {
+    const todosContainer = document.querySelector(".todos-container");
+
+    const todoBox = document.createElement("div");
+    todoBox.classList.add("todo");
+    todosContainer.appendChild(todoBox);
+
+    const h3Todo = document.createElement("h3");
+    h3Todo.classList.add("title");
+    h3Todo.textContent = todo.title;
+    todoBox.appendChild(h3Todo);
+
+    const pTodo = document.createElement("p");
+    pTodo.classList.add("description");
+    pTodo.textContent = todo.description;
+    todoBox.appendChild(pTodo);
+
+    const dateTodo = document.createElement("h4");
+    dateTodo.classList.add("date");
+    dateTodo.textContent = todo.dueDate;
+    todoBox.appendChild(dateTodo);
+
+    const proprityTodo = document.createElement("h4");
+    proprityTodo.classList.add("priority");
+    proprityTodo.textContent = todo.priority;
+    todoBox.appendChild(proprityTodo);
+
+    // TODO notes
+    // const proprityTodo = document.createElement("h4")
+    // proprityTodo.classList.add("priority")
+    // proprityTodo.textContent = todo.priority
+    // todoBox.appendChild(proprityTodo)
+
+    const checkTodo = document.createElement("input");
+    checkTodo.addEventListener("click", () => {
+      todo.toggleChecklist();
+    });
+    checkTodo.setAttribute("type", "checkbox");
+    checkTodo.setAttribute("id", "check");
+    todoBox.appendChild(checkTodo);
+
+    const projectTodo = document.createElement("h5");
+    projectTodo.classList.add("project");
+    projectTodo.textContent = todo.project;
+    todoBox.appendChild(projectTodo);
+  }
+
+  function createProjectsList(projects) {
+    removeProjects();
+    projects.forEach(createProjectLink);
+  }
+
+  function removeProjects() {
+    const projectList = document.querySelector("ul");
+    projectList.textContent = "";
+  }
+
+  function createProjectLink(projectName) {
+    const projectList = document.querySelector("ul");
+
+    const projectItem = document.createElement("li");
+    projectItem.textContent = projectName;
+    projectList.appendChild(projectItem);
+  }
+})();
+
+{
+  /* <nav>
+      <h2>Projects:</h2>
+      <ul>
+        <li>Project 1</li> */
+}
+
+{
+  /* <div class="todo">
+<h3 class="title">Title</h3>
+<p class="description">Description</p>
+<h4 class="date">Due Date</h4>
+<h4 class="priority">Priority</h4>
+// <ul class="notes">
+//   <li>Note1</li>
+// </ul>
+<input type="checkbox" id="check" />
+<h5 class="project">Project</h5> */
+}
+
+
+/***/ }),
+
 /***/ "./src/modules/todoArray.js":
 /*!**********************************!*\
   !*** ./src/modules/todoArray.js ***!
@@ -3652,10 +3768,12 @@ var __webpack_exports__ = {};
   !*** ./src/index.js ***!
   \**********************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/esm/format/index.js");
+/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/esm/format/index.js");
 /* harmony import */ var _modules_TodoConstructor_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/TodoConstructor.js */ "./src/modules/TodoConstructor.js");
 /* harmony import */ var _modules_todoArray_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/todoArray.js */ "./src/modules/todoArray.js");
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
+/* harmony import */ var _modules_display_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/display.js */ "./src/modules/display.js");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
+
 
 
 
@@ -3665,21 +3783,21 @@ const localStorageUpdatedArray = [
   {
     title: "prova",
     description: "prova description",
-    dueDate: (0,date_fns__WEBPACK_IMPORTED_MODULE_3__["default"])(new Date(), "eeee"),
+    dueDate: (0,date_fns__WEBPACK_IMPORTED_MODULE_4__["default"])(new Date(), "eeee"),
     priority: 1,
     project: "provaProject",
   },
   {
     title: "prova",
     description: "prova description",
-    dueDate: (0,date_fns__WEBPACK_IMPORTED_MODULE_3__["default"])(new Date(), "eeee"),
+    dueDate: (0,date_fns__WEBPACK_IMPORTED_MODULE_4__["default"])(new Date(), "eeee"),
     priority: 1,
     project: "provaProject",
   },
   {
     title: "prova",
     description: "prova description",
-    dueDate: (0,date_fns__WEBPACK_IMPORTED_MODULE_3__["default"])(new Date(), "eeee"),
+    dueDate: (0,date_fns__WEBPACK_IMPORTED_MODULE_4__["default"])(new Date(), "eeee"),
     priority: 1,
   },
 ];
@@ -3706,8 +3824,12 @@ function updateLocalStorage(newTodo) {
   );
 }
 
-console.log(_modules_todoArray_js__WEBPACK_IMPORTED_MODULE_1__.todoArray.getAllTodo());
-console.log(_modules_todoArray_js__WEBPACK_IMPORTED_MODULE_1__.todoArray.getProjectsName());
+// console.log(todoArray.getAllTodo());
+// console.log(todoArray.getProjectsName());
+
+_modules_display_js__WEBPACK_IMPORTED_MODULE_2__.displayCommand.displayTodos(_modules_todoArray_js__WEBPACK_IMPORTED_MODULE_1__.todoArray.getAllTodo());
+_modules_display_js__WEBPACK_IMPORTED_MODULE_2__.displayCommand.createProjectsList(_modules_todoArray_js__WEBPACK_IMPORTED_MODULE_1__.todoArray.getProjectsName());
+// displayCommand.displayTodos(todoArray.getProjectTodo("none"));
 
 })();
 
