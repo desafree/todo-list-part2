@@ -1,0 +1,29 @@
+{
+  "name": "todo-list-part2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "start": "webpack --config webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/desafree/todo-list-part2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/desafree/todo-list-part2/issues"
+  },
+  "homepage": "https://github.com/desafree/todo-list-part2#readme",
+  "devDependencies": {
+    "css-loader": "^6.7.1",
+    "date-fns": "^2.28.0",
+    "sass": "^1.52.1",
+    "sass-loader": "^13.0.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2"
+  }
+}
