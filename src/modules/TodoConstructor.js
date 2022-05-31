@@ -4,7 +4,7 @@ export default class TodoConstructor {
   constructor({
     title,
     description,
-    dueDate = format(new Date(), "eeee"),
+    dueDate = new Date(),
     priority = "1",
     note = "",
     project = "none",
@@ -24,7 +24,9 @@ export default class TodoConstructor {
   }
 
   changePriority(index) {
-    this.priority = Number(index);
+    if (index > 0 && index <= 3) {
+      this.priority = Number(index);
+    }
   }
 
   changeNote(newNote) {

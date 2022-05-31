@@ -8,17 +8,36 @@ export const todoArray = (function todoArray() {
   }
 
   function getAllTodo() {
-    return todos.filter((todo) => {
-      return !todo.deleted;
-    });
+    return todos
+      .filter((todo) => {
+        return !todo.deleted;
+      })
+      .sort((a, b) => {
+        if (a.dueDate > b.dueDate) {
+          return 1;
+        } else {
+          return -1;
+        }
+      });
   }
 
   function getProjectTodo(projectName) {
-    const projectTodos = todos.filter((todo) => {
-      if (todo.project == projectName) {
-        return true;
-      }
-    });
+    const projectTodos = todos
+      .filter((todo) => {
+        return !todo.deleted;
+      })
+      .filter((todo) => {
+        if (todo.project == projectName) {
+          return true;
+        }
+      })
+      .sort((a, b) => {
+        if (a.dueDate > b.dueDate) {
+          return 1;
+        } else {
+          return -1;
+        }
+      });
 
     return projectTodos.filter((todo) => {
       return !todo.deleted;
@@ -26,11 +45,15 @@ export const todoArray = (function todoArray() {
   }
 
   function getProjectsName() {
-    return todos.reduce((total, curr) => {
-      if (!total.includes(curr.project)) {
-        total.push(curr.project);
-      }
-      return total;
-    }, []);
+    return todos
+      .filter((todo) => {
+        return !todo.deleted;
+      })
+      .reduce((total, curr) => {
+        if (!total.includes(curr.project)) {
+          total.push(curr.project);
+        }
+        return total;
+      }, []);
   }
 })();
