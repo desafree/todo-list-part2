@@ -1,17 +1,17 @@
-import { format } from "date-fns";
+import { format } from 'date-fns';
 
 export default class TodoConstructor {
   constructor({
     title,
     description,
     dueDate = new Date(),
-    priority = "1",
-    note = "",
-    project = "none",
+    priority = '1',
+    note = '',
+    project = 'none',
   }) {
     this.title = String(title);
     this.description = String(description);
-    this.dueDate = dueDate;
+    this.dueDate = new Date(dueDate);
     this.priority = Number(priority);
     this.note = String(note);
     this.checklist = false;
